@@ -1,16 +1,12 @@
 # IIM Node CRUD
 This is a todo application. REST api is made with express. Client is made with Vuejs 2
 
-------------
-
-
 ## Summary
 1. [Installation](#installation "Installation")
 2. [Known bugs](#known-bugs "Known bugs")
 2. [Routes](#routes "Routes")
 2. [Features](#features "Features")
 
-------------
 
 1. ## Installation
 	1. ### Docker
@@ -38,7 +34,6 @@ This is a todo application. REST api is made with express. Client is made with V
 3. ## Routes
 	1. ### User
 		1. #### Create user
-		------------
 			- Method : `POST`
 			- Body : 
 				- email: `String` required
