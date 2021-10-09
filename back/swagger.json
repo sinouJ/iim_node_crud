@@ -1,0 +1,189 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "IIM Node CRUD API",
+        "descritpion": "REST Api for todo application",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:4443/api",
+            "description": "Local dev environment url"
+        }
+    ],
+    "paths": {
+        "/users/register": {
+            "post": {
+                "summary": "Create a user",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "required": true,
+                        "schema": {
+                            "in": "body",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    },
+                    {
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "in": "body",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "required": true,
+                        "schema": {
+                            "in": "body",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    },
+                    {
+                        "name": "bio",
+                        "required": false,
+                        "schema": {
+                            "in": "body",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "User successfully created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "userId": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 201
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "User already exists"
+                    },
+                    "400": {
+                        "description": "Missing parameters"
+                    },
+                    "500": {
+                        "description": "Unable to verify user"
+                    }
+                },
+                "tags": [
+                    "User"
+                ]
+            }
+        },
+        "/users/login": {
+            "post": {
+                "summary": "Log user to get an auth token",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "required": true,
+                        "schema": {
+                            "in": "body",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "required": true,
+                        "schema": {
+                            "in": "body",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfully created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "userId": {
+                                            "type": "string"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "User"
+                ]
+            }
+        },
+        "/users/user/": {
+            "get": {
+                "summary": "Get user with token",
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "required": true,
+                        "schema": {
+                            "in": "headers",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfully logged",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "userId": {
+                                            "type": "string"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "User"
+                ]
+            }
+        }
+    }
+}

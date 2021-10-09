@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start_container": "npm i && npx sequelize-cli db:migrate && node app.js",
+    "start_container": "npm i && npx sequelize-cli db:migrate && nodemon app.js",
     "start": "npx sequelize-cli db:migrate && node app.js"
   },
   "keywords": [],
@@ -19,10 +19,11 @@
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
-    "pg": "^8.7.1",
     "nodemon": "^2.0.6",
+    "pg": "^8.7.1",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
+    "swagger-ui-express": "^4.1.6",
     "verbal-expressions": "^1.0.2"
   }
 }

@@ -3,12 +3,15 @@ const express =  require('express')
 
 // Imports
 const apiRouter = require('./apiRouter').router
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 // Params
 const port = 4443
 
 // Instantiate server
 const app = express()
+
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -21,6 +24,7 @@ app.use((req, res, next) => {
     next()
 })
 app.use('/api/', apiRouter)
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Launch Server
 app.listen(port, () => {
