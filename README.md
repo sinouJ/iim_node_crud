@@ -34,16 +34,18 @@ This is a todo application. REST api is made with express. Client is made with V
 3. ## Routes
 	1. ### User
 		1. #### Create user
-			- Route : `localhost:4443/api/user`
+			- Route : `localhost:4443/api/users/register`
 			- Method : `POST`
 			- Body : 
 				- email : `String` required
 				- password : `String` required (password must contain between 6 and 20 characters and at least one numeric digit, one uppercase and one lowercase letter)
 				- biography : `Text` optional
 		2. #### Login
-			- Route : 
-			- Method : 
+			- Route : `localhost:4443/api/users/login`
+			- Method : `POST`
 			- Body :
+				- email : `String` required
+				- password: `String` required
 	2. ### Task
 		1. Post task
 		2. Get all tasks
