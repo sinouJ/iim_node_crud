@@ -5,6 +5,8 @@ This is a todo application. REST api is made with express. Client is made with V
 
 
 ## Summary
+1. [Installation](#installation "Installation")
+2. [Known bugs](#known_bugs "Known bugs")
 
 1. ## Installation
 	1. ### Docker
