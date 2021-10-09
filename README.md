@@ -30,11 +30,11 @@ This is a todo application. REST api is made with express. Client is made with V
 			- then `npm run serve`
 			- Access the application at the following url : [`http://localhost:8080`](http://localhost:8080 "`http://localhost:8080`")
 2. ## Known bugs
-	- [] Components doesn't re-render correctly when adding a task (bypass => refresh tab)
-	- [] No error displayed for the user when he tries to access at a protected route and isn't authenticated
-	- [] No UI interface available to change a task state (To do, doing, done)
-	- [] No UI interface available to edit title or description task
-	- [] No UI interface available to delete task
+	- [ ] Components doesn't re-render correctly when adding a task (bypass => refresh tab)
+	- [ ] No error displayed for the user when he tries to access at a protected route and isn't authenticated
+	- [ ] No UI interface available to change a task state (To do, doing, done)
+	- [ ] No UI interface available to edit title or description task
+	- [ ] No UI interface available to delete task
 3. ## Routes
 	1. Create user
 4. ## Features
