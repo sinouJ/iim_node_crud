@@ -1,7 +1,7 @@
 # IIM Node CRUD
 This is a todo application. REST api is made with express. Client is made with Vuejs 2
 
-## Summary
+## Contents
 1. [Installation](#installation "Installation")
 2. [Known bugs (important)](#known-bugs "Known bugs")
 2. [Routes](#routes "Routes")
