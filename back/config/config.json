@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "express_api",
+    "password": "root",
+    "database": "todo_app",
+    "host": "localhost",
+    "port": "8889",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "root",
+    "database": "todo_app",
+    "host": "127.0.0.1",
+    "port": "8889",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "root",
+    "database": "todo_app",
+    "host": "127.0.0.1",
+    "port": "8889",
+    "dialect": "mysql"
+  }
+}

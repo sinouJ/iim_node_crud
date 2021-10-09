@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  
+  database:
+    image: ubuntu/mysql:8.0-20.04_beta
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+      MYSQL_USER: express_api
+      MYSQL_DATABASE: todo_app
+    volumes:
+      - ./data_db:/var/lib/mysql
+    ports:
+      - "8889:3306"
+
+volumes:
+  data_db
