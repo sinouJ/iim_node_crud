@@ -32,6 +32,7 @@ This is a todo application. REST api is made with express. Client is made with V
 - [ ] No UI interface available to edit title or description task
 - [ ] No UI interface available to delete task
 ## Routes
+- Access the api documentation at the following url : [`http://localhost:4443/api/docs`](http://localhost:4443/api/docs "`http://localhost:4443/api/docs`")
 ### User
 #### Create user
 - Route : `localhost:4443/api/users/register`
