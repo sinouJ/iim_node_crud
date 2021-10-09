@@ -134,6 +134,15 @@
                                 }
                             }
                         }
+                    },
+                    "403": {
+                        "description": "Invalid password"
+                    },
+                    "404": {
+                        "description":"User not found"
+                    },
+                    "500": {
+                        "description":"Unable to verify user"
                     }
                 },
                 "tags": [
@@ -163,25 +172,452 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "userId": {
+                                        "id": {
                                             "type": "string"
                                         },
-                                        "token": {
+                                        "email": {
                                             "type": "string",
-                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                                            "example": "example@test.fr"
                                         },
-                                        "status": {
-                                            "type": "integer",
-                                            "example": 200
+                                        "username": {
+                                            "type": "string",
+                                            "example": "username"
+                                        },
+                                        "bio": {
+                                            "type": "string",
+                                            "example": "A short biography"
+                                        },
+                                        "createdAt": {
+                                            "type": "string",
+                                            "example": "2021-10-06 10:13:53"
                                         }
                                     }
                                 }
                             }
                         }
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "500": {
+                        "description": "Cannot fetch user"
                     }
                 },
                 "tags": [
                     "User"
+                ]
+            }
+        },
+        "/users/user/update": {
+            "put": {
+                "summary": "Update user profile",
+                "parameters": [
+                    {
+                        "name": "bio",
+                        "required": false,
+                        "schema": {
+                            "in": "body",
+                            "type": "text",
+                            "format": "utf-8"
+                        }
+                    },
+                    {
+                        "name": "username",
+                        "required": false,
+                        "schema": {
+                            "in": "body",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "required": false,
+                        "schema": {
+                            "in": "body",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfully logged",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "example@test.fr"
+                                        },
+                                        "username": {
+                                            "type": "string",
+                                            "example": "username"
+                                        },
+                                        "bio": {
+                                            "type": "string",
+                                            "example": "A short biography"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "500": {
+                        "description": "Cannot fetch user"
+                    }
+                },
+                "tags": [
+                    "User"
+                ]
+            }
+        },
+        "/users/user/id": {
+            "get": {
+                "summary": "Get user by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "in": "headers",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfully fetched",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "user": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "example@test.fr"
+                                                },
+                                                "username": {
+                                                    "type": "string",
+                                                    "example": "username"
+                                                },
+                                                "bio": {
+                                                    "type": "string",
+                                                    "example": "A short biography"
+                                                },
+                                                "createdAt": {
+                                                    "type": "string",
+                                                    "example": "2021-10-06 10:13:53"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "500": {
+                        "description": "Cannot fetch user"
+                    }
+                },
+                "tags": [
+                    "User"
+                ]
+            }
+        },
+        "/todos/post": {
+            "post": {
+                "summary": "Post a task",
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "required": true,
+                        "schema": {
+                            "in": "headers",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "required": false,
+                        "schema": {
+                            "in": "body",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "required": false,
+                        "schema": {
+                            "in": "body",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Task succesfully posted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "newMessage": {
+                                            "type": "object",
+                                            "properties": {
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Task title"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "A short description"
+                                                },
+                                                "completed": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "userId": {
+                                                    "type": "integer",
+                                                    "example": 3
+                                                },
+                                                "likes": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Missing parameters"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "500": {
+                        "description": "Cannot post or unable to verify user"
+                    }
+                },
+                "tags": [
+                    "Post"
+                ]
+            }
+        },
+        "/todos": {
+            "get": {
+                "summary": "Get all tasks",
+                "responses": {
+                    "200": {
+                        "description": "Tasks succesfully fetched",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Task title"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "A short description"
+                                            },
+                                            "completed": {
+                                                "type": "boolean",
+                                                "example": false
+                                            },
+                                            "userId": {
+                                                "type": "integer",
+                                                "example": 3
+                                            },
+                                            "likes": {
+                                                "type": "integer",
+                                                "example": 10
+                                            },
+                                            "updatedAt": {
+                                                "type": "integer",
+                                                "example":"2021-10-06 10:13:53"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Tasks not found"
+                    },
+                    "500": {
+                        "description": "Unable to fetch tasks"
+                    }
+                },
+                "tags": [
+                    "Post"
+                ]
+            }
+        },
+        "/todos/complete": {
+            "put": {
+                "summary": "Mark task as done",
+                "parameters": [
+                    {
+                        "name": "completed",
+                        "required": true,
+                        "schema": {
+                            "in": "body",
+                            "type": "booloean",
+                            "format": "utf-8"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "required": false,
+                        "schema": {
+                            "in": "body",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tasks succesfully fetched",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Task title"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "A short description"
+                                            },
+                                            "completed": {
+                                                "type": "boolean",
+                                                "example": false
+                                            },
+                                            "userId": {
+                                                "type": "integer",
+                                                "example": 3
+                                            },
+                                            "likes": {
+                                                "type": "integer",
+                                                "example": 10
+                                            },
+                                            "updatedAt": {
+                                                "type": "integer",
+                                                "example":"2021-10-06 10:13:53"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Tasks not found"
+                    },
+                    "500": {
+                        "description": "Unable to fetch tasks"
+                    }
+                },
+                "tags": [
+                    "Post"
+                ]
+            }
+        },
+        "/todos/delete": {
+            "delete": {
+                "summary": "Delete a task",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "in": "body",
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Tasks succesfully deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Task title"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "A short description"
+                                            },
+                                            "completed": {
+                                                "type": "boolean",
+                                                "example": false
+                                            },
+                                            "userId": {
+                                                "type": "integer",
+                                                "example": 3
+                                            },
+                                            "likes": {
+                                                "type": "integer",
+                                                "example": 10
+                                            },
+                                            "updatedAt": {
+                                                "type": "integer",
+                                                "example":"2021-10-06 10:13:53"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Tasks not found"
+                    }
+                },
+                "tags": [
+                    "Post"
                 ]
             }
         }
