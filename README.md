@@ -7,8 +7,6 @@ This is a todo application. REST api is made with express. Client is made with V
 ## Summary
 
 1. ## Installation
-The application is initializable with docker or locally
-
 	1. ### Docker
 		- `docker-compose up --build`
 		- Access the application at the following url : [`http://localhost:8080`](http://localhost:8080 "`http://localhost:8080`")
