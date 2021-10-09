@@ -3,8 +3,8 @@
     "username": "express_api",
     "password": "root",
     "database": "todo_app",
-    "host": "localhost",
-    "port": "8889",
+    "host": "database",
+    "port": "3306",
     "dialect": "mysql"
   },
   "test": {

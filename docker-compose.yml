@@ -8,13 +8,40 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: root
-      MYSQL_USER: express_api
       MYSQL_DATABASE: todo_app
-    volumes:
-      - ./data_db:/var/lib/mysql
-    ports:
-      - "8889:3306"
+      MYSQL_USER: express_api
+      MYSQL_PASSWORD: root
+    healthcheck:
+      test: "exit 0"
+    # volumes:
+    #   - ./data_db:/var/lib/mysql
+    # ports:
+    #   - "8889:3306"
 
-volumes:
-  data_db
+  api:
+    build: "./back"
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - "./back:/home/node/api"
+    working_dir: "/home/node/api"
+    command: "npm run start_container"
+    tty: true
+    stdin_open: true
+    ports:
+      - 4443:4443
+
+  client:
+    build: "./front"
+    volumes:
+      - "./front:/home/node/app"
+    working_dir: "/home/node/app"
+    command: "npm run serve_container"
+    tty: true
+    stdin_open: true
+    ports:
+      - 8080:8080
+
+# volumes:
+#   data_db:
