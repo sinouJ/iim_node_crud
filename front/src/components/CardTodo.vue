@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="card_task">
         <header>
             <h3>
                 <span></span>
@@ -10,8 +10,12 @@
             <p>{{description}}</p>
         </main>
         <footer>
-            <p>Created by {{username}}</p>
-            <p>{{intlDate}}</p>
+            <menu-dropdown-card @clicked="toggleMenu" :isVisible="isVisible"/>
+            <div class="author">
+                <p>Created by <b>{{username}}</b></p>
+                <span>-</span>
+                <p>{{intlDate}}</p>
+            </div>
         </footer>
     </div>
 </template>
@@ -19,37 +23,47 @@
 <script>
 import dayjs from "dayjs"
 import relativeTime from 'dayjs/plugin/relativeTime';
+import MenuDropdownCard from '../molecules/MenuDropdownCard.vue';
 
 
 export default {
-  name: 'CardTodo',
-  props: {
-    username: String,
-    todotext: String,
-    completed: Boolean,
-    date: Date,
-    description: String
-  },
-  computed: {
-    intlDate: function() {
-        dayjs.extend(relativeTime)
-        const duration = dayjs(this.date).fromNow()
+    components: { MenuDropdownCard },
+    name: 'CardTodo',
+    props: {
+        username: String,
+        todotext: String,
+        completed: Boolean,
+        date: Date,
+        description: String
+    },
+    data: function() {
+        return{
+            isVisible: false
+        }
+    },
+    computed: {
+        intlDate: function() {
+            dayjs.extend(relativeTime)
+            const duration = dayjs(this.date).fromNow()
 
-        return duration
-      }
-  },
-  methods: {
-      checkTodo: function() {
-          this.$emit("checked")
-      } 
-  }
+            return duration
+            }
+        },
+    methods: {
+        checkTodo: function() {
+            this.$emit("checked")
+        },
+        toggleMenu: function() {
+            this.isVisible = !this.isVisible
+        }
+    }
 };
 </script>
 
 <style lang="scss" scoped>
     @import '../scss/main.scss';
 
-    div {
+    .card_task {
         width: 100%;
         margin-bottom: 35px;
         border-radius: $radius;
@@ -90,13 +104,26 @@ export default {
         }
 
         footer {
-            p {
-                text-align: right;
-                color: $gray-light;
-                font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-                &:last-child {
+            .author {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                p {
+                    text-align: right;
+                    color: $gray-light;
+                    font-size: 10px;
                     margin-bottom: 0;
+                }
+
+                span {
+                    margin: 0 5px;
+                    color: $gray-light;
+                    font-size: 10px;
                 }
             }
         }
