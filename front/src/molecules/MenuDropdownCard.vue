@@ -1,7 +1,7 @@
 <template>
-    <div class="menu_dropdown_card">
-        <b-icon icon="three-dots" @click="clicked"></b-icon>
-        <div class="menu" :class="isVisible ? 'visible' : null">
+    <div class="menu_dropdown_card" :class="isVisible ? 'visible' : null" @click="clicked">
+        <b-icon icon="three-dots"></b-icon>
+        <div class="menu">
             <ul>
                 <li>
                     <b-icon icon="check2-circle"></b-icon>
@@ -38,8 +38,25 @@ export default {
     @import '../scss/main.scss';
 
     .menu_dropdown_card {
-        cursor: pointer;
         color: $primary;
+
+        &.visible {
+            &::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+            }
+
+            .menu {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        .b-icon {
+            cursor: pointer;
+        }
 
         .menu {
             position: absolute;
@@ -53,12 +70,9 @@ export default {
             transform: translateY(-20px);
             opacity: 0;
             visibility: hidden;
+            cursor: pointer;
 
-            &.visible {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
+            
 
             ul {
                 list-style-type: none;
@@ -88,6 +102,10 @@ export default {
 
                     &:hover {
                         color: $primary;
+
+                        &:last-child {
+                            color: $secondary;
+                        }
                     }
                 }
             }

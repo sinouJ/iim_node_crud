@@ -1,6 +1,6 @@
 <template>
   <div @click="clicked">
-      <router-link :to="route" :class="{isActive}">
+      <router-link :to="route" :class="{isActive}" class="link_icon">
           <b-icon :icon="icon"></b-icon>
           {{title}}
       </router-link>
@@ -24,10 +24,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     @import '../scss/main.scss';
 
-    a {
+    .link_icon {
         color: $gray;
         font-weight: bold;
         display: block;

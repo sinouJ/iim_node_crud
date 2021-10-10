@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="side-menu">
       <div class="logo-container">
           <img src="../assets/logo.png">
       </div>
@@ -49,10 +49,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     @import '../scss/main.scss';
 
-    nav {
+    .side-menu {
         width: 100%;
         height: 100vh;
         border-right: 1px solid $gray-border;
@@ -77,6 +77,14 @@ export default {
             justify-content: space-between;
             height: calc(100vh - 135px);
             padding-bottom: 50px;
+        }
+
+        .bottom-navigation {
+            > div {
+                &:last-child {
+                    a {color: $secondary;}
+                }
+            }
         }
     }
 </style>
